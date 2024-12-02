@@ -1,16 +1,13 @@
-import Image from 'next/image';
-import DeleteButton from '../public/images/deleteButton.svg';
-export default function Home() {
-    return (
-        <main>
-            <h1 className="font-nanumSquareBold text-[20px]">테스트 </h1>
-            <DeleteButton />
-            <Image
-                src="/images/image.png"
-                alt="image"
-                width={100}
-                height={100}
-            />
-        </main>
-    );
+import { fetchTodos } from "@/lib/api";
+import TodoList from "@/components/todo-list";
+
+export default async function Home() {
+  // 서버에서 초기 데이터 로드
+  const todos = await fetchTodos();
+
+  return (
+    <div className="mx-auto my-2 flex min-h-screen max-w-screen-lg flex-col items-center justify-start gap-4 font-nanumSquareBold text-[16px]">
+      <TodoList initialTodos={todos} />
+    </div>
+  );
 }
