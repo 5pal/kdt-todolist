@@ -25,7 +25,7 @@ const TodoList: React.FC<TodoListProps> = ({ initialTodos }) => {
 
     try {
       const newTodo = await createTodo({ name: text });
-      setTodos((prev) => [...prev, newTodo]);
+      setTodos((prev) => [newTodo, ...prev]);
       setText("");
     } catch (error) {
       console.error("Failed to add todo:", error);
@@ -69,6 +69,49 @@ const TodoList: React.FC<TodoListProps> = ({ initialTodos }) => {
           isActive={!!text.trim()}
           icon={<PlusIcon isActive={!!text.trim()} />}
         />
+        {/* Mobile 버전 추가 버튼 */}
+        <span onClick={handleSubmit} className="block cursor-pointer md:hidden">
+          <svg
+            width="56"
+            height="56"
+            viewBox="0 0 56 56"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="2.21729"
+              y="5"
+              width="52.7826"
+              height="50"
+              rx="23"
+              fill="#0F172A"
+              stroke="#0F172A"
+              strokeWidth="2"
+            />
+            <rect
+              x="1"
+              y="1"
+              width="52.7826"
+              height="50"
+              rx="23"
+              fill={!!text.trim() ? "#7C3AED" : "#E2E8F0"}
+              stroke="#0F172A"
+              strokeWidth="2"
+            />
+            <path
+              d="M20 26L32 26"
+              stroke={!!text.trim() ? "white" : "#64748B"}
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <path
+              d="M26 32L26 20"
+              stroke={!!text.trim() ? "white" : "#64748B"}
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </span>
       </form>
 
       <div className="flex w-[400px] md:w-[700px] lg:w-[1000px]">
@@ -85,7 +128,7 @@ const TodoList: React.FC<TodoListProps> = ({ initialTodos }) => {
                 />
               ))
             ) : (
-              <span className="flex flex-col items-center justify-center *:text-slate-400">
+              <span className="flex select-none flex-col items-center justify-center *:text-slate-400">
                 <svg
                   className="h-[120px] w-[120px] md:h-[240px] md:w-[240px]"
                   viewBox="0 0 240 240"
@@ -273,7 +316,7 @@ const TodoList: React.FC<TodoListProps> = ({ initialTodos }) => {
                 />
               ))
             ) : (
-              <span className="flex flex-col items-center justify-center *:text-slate-400">
+              <span className="flex select-none flex-col items-center justify-center *:text-slate-400">
                 <svg
                   className="h-[120px] w-[120px] md:h-[240px] md:w-[240px]"
                   viewBox="0 0 240 240"

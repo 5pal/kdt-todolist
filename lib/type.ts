@@ -1,3 +1,10 @@
+export interface SquareButtonProps {
+  icon: React.ReactNode;
+  title: string;
+  isActive?: boolean;
+  onClick: () => void;
+}
+
 export interface TodoItemProps {
   id: string;
   tenantId: string;

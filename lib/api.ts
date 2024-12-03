@@ -35,7 +35,6 @@ export const fetchTodos = async (): Promise<ITodoItem[]> => {
 
 // 특정 할 일 조회
 export const fetchTodoById = async (id: string): Promise<TodoItemProps> => {
-  console.log(id);
   const response = await fetch(`${API_URL}/${TENANT_ID}/items/${id}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch todo: ${response.statusText}`);
@@ -70,7 +69,11 @@ export const updateTodo = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ isCompleted: data.isCompleted, memo: data.memo }),
+    body: JSON.stringify({
+      isCompleted: data.isCompleted,
+      memo: data.memo,
+      imageUrl: data.imageUrl,
+    }),
   });
 
   if (!response.ok) {
@@ -78,6 +81,46 @@ export const updateTodo = async (
   }
 
   return response.json();
+};
+
+export const updateTodoImage = async (image: File): Promise<string> => {
+  if (!image) {
+    throw new Error("업로드할 이미지가 필요합니다.");
+  }
+
+  // 파일 크기 검증
+  if (image.size > 5 * 1024 * 1024) {
+    throw new Error("이미지 크기는 5MB 이하여야 합니다.");
+  }
+
+  // 파일 이름 검증
+  if (!/^[a-zA-Z0-9._-]+$/.test(image.name)) {
+    throw new Error("이미지 파일 이름은 영어로만 이루어져야 합니다.");
+  }
+
+  const formData = new FormData();
+  formData.append("image", image);
+
+  try {
+    const response = await fetch(`${API_URL}/${TENANT_ID}/images/upload`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`이미지 업로드 실패: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+
+    if (!result.url) {
+      throw new Error("이미지 URL을 가져오지 못했습니다.");
+    }
+    return result.url; // 서버에서 반환된 업로드된 이미지의 URL
+  } catch (error) {
+    console.error("이미지 업로드 중 오류 발생:", error);
+    throw error;
+  }
 };
 
 export const deleteTodo = async (id: string): Promise<void> => {

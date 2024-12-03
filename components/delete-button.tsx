@@ -4,9 +4,13 @@ export default function DeleteButton({
   icon,
   title,
   isActive = false,
+  onClick,
 }: SquareButtonProps) {
   return (
-    <span className={"primary-button flex bg-rose-500 text-white"}>
+    <span
+      className={"primary-button flex bg-rose-500 text-white"}
+      onClick={onClick}
+    >
       {icon}
       {title}
     </span>

@@ -4,12 +4,14 @@ export default function EditButton({
   icon,
   title,
   isActive = false,
+  onClick,
 }: SquareButtonProps) {
   return (
     <span
       className={`primary-button flex ${
-        isActive ? "bg-lime-300 text-white" : "bg-slate-300 text-black"
+        isActive ? "bg-lime-300" : "bg-slate-300"
       }`}
+      onClick={onClick}
     >
       {icon}
       {title}
