@@ -1,5 +1,5 @@
-import { fetchTodos } from "@/lib/api";
 import TodoList from "@/components/todo-list";
+import { fetchTodos } from "@/lib/api";
 
 export default async function Home() {
   // 서버에서 초기 데이터 로드

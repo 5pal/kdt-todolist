@@ -21,7 +21,9 @@ const TENANT_ID = "5pal";
 // };
 
 export const fetchTodos = async (): Promise<ITodoItem[]> => {
-  const response = await fetch(`${API_URL}/${TENANT_ID}/items`);
+  const response = await fetch(`${API_URL}/${TENANT_ID}/items`, {
+    cache: "no-store", // 항상 최신 데이터 가져오기
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to fetch todos: ${response.statusText}`);

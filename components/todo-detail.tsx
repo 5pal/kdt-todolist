@@ -51,7 +51,7 @@ const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
     try {
       await updateTodo(todo.id, updatedTodo);
       alert("수정되었습니다.");
-      router.push("/"); // 목록 페이지로 이동
+      router.replace("/"); // 목록 페이지로 이동
     } catch (error) {
       console.error("Error updating todo:", error);
       alert("수정에 실패했습니다. 다시 시도해주세요.");
@@ -63,7 +63,7 @@ const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
     try {
       await deleteTodo(todo.id);
       alert("삭제되었습니다.");
-      router.push("/"); // 목록 페이지로 이동
+      router.replace("/"); // 목록 페이지로 이동
     } catch (error) {
       console.error("Error deleting todo:", error);
       alert("삭제에 실패했습니다. 다시 시도해주세요.");
@@ -258,7 +258,7 @@ const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
           {/* Scrollable editable textarea */}
           <textarea
             placeholder="내용을 추가하거나 수정할 수 있습니다."
-            className="absolute inset-x-8 bottom-8 top-16 resize-none overflow-auto rounded-lg bg-transparent p-2 font-nanumSquareRegular leading-tight text-gray-700 hover:overflow-scroll focus:outline-none"
+            className="absolute inset-x-8 bottom-8 top-16 resize-none overflow-auto rounded-lg bg-transparent p-2 font-nanumSquareRegular leading-tight text-gray-700 focus:outline-none"
             value={memo}
             onChange={handleChange}
           />
@@ -268,7 +268,7 @@ const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
         </div>
       </div>
 
-      <div className="mt-4 flex justify-end gap-4 sm:justify-center">
+      <div className="mt-4 flex justify-center gap-4 lg:justify-end">
         <EditButton title="수정 완료" onClick={handleSave} />
         <DeleteButton title="삭제하기" onClick={handleDelete} />
       </div>
