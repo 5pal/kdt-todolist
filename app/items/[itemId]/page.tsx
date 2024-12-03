@@ -1,6 +1,5 @@
 import TodoDetail from "@/components/todo-detail";
 import { fetchTodoById, fetchTodos } from "@/lib/api";
-import { usePathname } from "next/navigation";
 
 // Static Params 생성
 export async function generateStaticParams() {

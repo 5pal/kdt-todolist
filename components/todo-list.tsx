@@ -6,9 +6,9 @@ import DoneIcon from "@/components/icons/done-icon";
 import PlusIcon from "@/components/icons/plus-icon";
 import TodoIcon from "@/components/icons/todo-icon";
 import TodoItem from "@/components/todo-item";
-import { createTodo, fetchTodos, updateTodo } from "@/lib/api";
+import { createTodo, updateTodo } from "@/lib/api";
 import { ITodoItem } from "@/lib/type";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface TodoListProps {
   initialTodos: ITodoItem[];

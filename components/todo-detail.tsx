@@ -3,7 +3,7 @@
 import { deleteTodo, updateTodo, updateTodoImage } from "@/lib/api";
 import { TodoItemProps } from "@/lib/type";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteButton from "./delete-button";
 import EditButton from "./edit-button";
 import CheckIcon from "./icons/check-icon";
@@ -15,7 +15,7 @@ interface TodoDetailClientProps {
 
 const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
   const router = useRouter();
-  const [todo, setTodo] = useState<TodoItemProps>(initialTodo);
+  const [todo] = useState<TodoItemProps>(initialTodo);
   const [name, setName] = useState(todo.name);
   const [memo, setMemo] = useState(todo.memo || null);
   const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
@@ -100,47 +100,57 @@ const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
           !isCompleted ? "bg-white" : "bg-violet-100"
         }`}
       >
-        <span className="flex items-center justify-center gap-2 underline">
+        <span className="flex items-center justify-center gap-2 underline underline-offset-2">
           {!isCompleted ? (
-            <svg
-              className="mr-2 cursor-pointer"
-              onClick={() => setIsCompleted((prev) => !prev)}
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="15"
-                fill="#FEFCE8"
-                stroke="#0F172A"
-                strokeWidth="2"
-              />
-            </svg>
+            <span>
+              <svg
+                className="mr-2 cursor-pointer"
+                onClick={() => setIsCompleted((prev) => !prev)}
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15"
+                  fill="#FEFCE8"
+                  stroke="#0F172A"
+                  strokeWidth="2"
+                />
+              </svg>
+            </span>
           ) : (
-            <svg
-              className="mr-2 cursor-pointer"
-              onClick={() => setIsCompleted((prev) => !prev)}
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="16" cy="16" r="16" fill="#7C3AED" />
-              <path
-                d="M8 16.2857L13.8182 22L24 12"
-                stroke="#FEFCE8"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <span>
+              <svg
+                className="mr-2 cursor-pointer"
+                onClick={() => setIsCompleted((prev) => !prev)}
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="16" cy="16" r="16" fill="#7C3AED" />
+                <path
+                  d="M8 16.2857L13.8182 22L24 12"
+                  stroke="#FEFCE8"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
           )}
-          {name}
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="할 일을 입력하세요"
+            className="w-full rounded-md bg-transparent px-2 py-1 text-center focus:outline-none focus:ring-2 focus:ring-violet-300"
+          />
         </span>
       </div>
 
@@ -319,16 +329,13 @@ const TodoDetail: React.FC<TodoDetailClientProps> = ({ initialTodo }) => {
             Memo
           </h1>
 
-          {/* Scrollable editable textarea */}
+          {/* 스크롤과 편집기능이 있는 textarea */}
           <textarea
             placeholder="내용을 추가하거나 수정할 수 있습니다."
             className="absolute inset-x-8 bottom-8 top-16 resize-none overflow-auto rounded-lg bg-transparent p-2 font-nanumSquareRegular leading-tight text-gray-700 focus:outline-none"
             value={memo || ""}
             onChange={handleMemoChange}
           />
-          {/* <p className="absolute bottom-1/2 left-1/2 top-1/2 -translate-x-1/2 transform text-center font-nanumSquareRegular text-gray-700">
-            오메가 3, 프로폴리스, 아연 챙겨먹기
-          </p> */}
         </div>
       </div>
 

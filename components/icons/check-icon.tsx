@@ -1,8 +1,4 @@
-export default function CheckIcon({
-  isActive = false,
-}: {
-  isActive?: boolean;
-}) {
+export default function CheckIcon() {
   return (
     <svg
       className="mr-2"

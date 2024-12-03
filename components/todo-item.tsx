@@ -7,7 +7,7 @@ interface TodoItem {
   onToggle: () => void;
 }
 
-const TodoItem: React.FC<TodoItem> = ({ id, name, isCompleted, onToggle }) => {
+const TodoItem: React.FC<TodoItem> = ({ id, name, onToggle }) => {
   return (
     <span className="flex h-14 w-full items-center rounded-full border-2 border-black p-4 font-nanumSquareRegular text-[16px]">
       <svg

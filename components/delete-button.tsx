@@ -3,7 +3,6 @@ import { SquareButtonProps } from "@/lib/type";
 export default function DeleteButton({
   icon,
   title,
-  isActive = false,
   onClick,
 }: SquareButtonProps) {
   return (

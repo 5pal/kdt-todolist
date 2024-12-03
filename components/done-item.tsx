@@ -7,12 +7,7 @@ interface DoneItemProps {
   onToggle: () => void;
 }
 
-const DoneItem: React.FC<DoneItemProps> = ({
-  id,
-  name,
-  isCompleted,
-  onToggle,
-}) => {
+const DoneItem: React.FC<DoneItemProps> = ({ id, name, onToggle }) => {
   return (
     <span className="flex h-14 w-full items-center rounded-full border-2 border-black bg-violet-100 p-4 font-nanumSquareRegular text-[16px] line-through">
       <svg

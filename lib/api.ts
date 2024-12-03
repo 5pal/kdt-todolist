@@ -1,24 +1,7 @@
-import {
-  CreateTodoDto,
-  FetchTodosResponse,
-  ITodoItem,
-  TodoItemProps,
-  UpdateTodoDto,
-} from "./type";
+import { CreateTodoDto, ITodoItem, TodoItemProps, UpdateTodoDto } from "./type";
 
 const API_URL = "https://assignment-todolist-api.vercel.app/api";
 const TENANT_ID = "5pal";
-
-// export const fetchTodos = async (): Promise<ITodoItem[]> => {
-//   const response = await fetch(`${API_URL}/${TENANT_ID}/items`);
-
-//   if (!response.ok) {
-//     throw new Error(`Failed to fetch todos: ${response.statusText}`);
-//   }
-
-//   const data = await response.json();
-//   return data;
-// };
 
 export const fetchTodos = async (): Promise<ITodoItem[]> => {
   const response = await fetch(`${API_URL}/${TENANT_ID}/items`, {
@@ -70,6 +53,7 @@ export const updateTodo = async (
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      name: data.name,
       isCompleted: data.isCompleted,
       memo: data.memo,
       imageUrl: data.imageUrl,

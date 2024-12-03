@@ -1,8 +1,4 @@
-export default function DeleteIcon({
-  isActive = false,
-}: {
-  isActive?: boolean;
-}) {
+export default function DeleteIcon() {
   return (
     <svg
       className="mr-2"
