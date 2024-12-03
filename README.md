@@ -44,6 +44,7 @@ Next.js와 TypeScript를 사용하여 구현한 할 일 관리 웹 애플리케�
 
 ## 프로젝트 구조
 
+kdt-todolist/
 ├── app/ # Next.js 앱 디렉토리
 │ ├── layout.tsx # 전역 레이아웃
 │ ├── page.tsx # 메인 페이지
