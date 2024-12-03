@@ -44,6 +44,7 @@ Next.js와 TypeScript를 사용하여 구현한 할 일 관리 웹 애플리케�
 
 ## 프로젝트 구조
 
+```
 kdt-todolist/
 ├── app/ # Next.js 앱 디렉토리
 │ ├── layout.tsx # 전역 레이아웃
@@ -57,6 +58,7 @@ kdt-todolist/
 │ ├── api.ts # API 통신 함수
 │ └── type.ts # TypeScript 타입 정의
 └── public/ # 정적 파일
+```
 
 ## 개발 환경 설정
 
